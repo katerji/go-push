@@ -3,6 +3,7 @@ package envs
 import (
 	"github.com/joho/godotenv"
 	"os"
+	"path/filepath"
 )
 
 type Env struct {
@@ -16,7 +17,7 @@ type Env struct {
 }
 
 func newEnv() *Env {
-	godotenv.Load()
+	loadEnv()
 	return &Env{
 		jWTToken:        os.Getenv("JWT_SECRET"),
 		jWTRefreshToken: os.Getenv("JWT_REFRESH_SECRET"),
@@ -63,4 +64,19 @@ func GetInstance() *Env {
 		instance = newEnv()
 	}
 	return instance
+}
+
+func loadEnv() {
+	err := godotenv.Load()
+	if err != nil {
+		execPath, err := os.Executable()
+		if err != nil {
+			panic(err)
+		}
+		envPath := filepath.Join(filepath.Dir(execPath), ".env")
+		err = godotenv.Load(envPath)
+		if err != nil {
+			panic(err)
+		}
+	}
 }
