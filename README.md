@@ -41,7 +41,7 @@ This repository contains a simple Go API with four endpoints for user authentica
         },
         "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzX2F0IjoxNjg3MjQ5ODM2LCJ1c2VyIjp7ImlkIjoxLCJlbWFpbCI6ImFzZEBnbWFpbC5jb20ifX0.MRJETBn_ZprEbzMK4558C4ZO9J2RKgrOcLCqwrGnb1M",
         "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzX2F0IjoxNjg4MzczMDM2LCJ1c2VyIjp7ImlkIjoxLCJlbWFpbCI6ImFzZEBnbWFpbC5jb20ifX0.9nVyOnER1ixLTxfN2KnAjqRg9DvzJ5jm10kT1Fu3iqk"
-       }
+      }
       ```
 
 4. **User Information**
