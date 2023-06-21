@@ -13,11 +13,23 @@ func sendBadRequest(c *gin.Context) {
 	})
 }
 
+func sendBadRequestWithMessage(c *gin.Context, message string) {
+	c.JSON(http.StatusBadRequest, gin.H{
+		"message": message,
+	})
+}
+
+func sendError(c *gin.Context) {
+	c.JSON(http.StatusInternalServerError, gin.H{
+		"message": somethingWentWrongMessage,
+	})
+}
+
 func sendErrorMessage(c *gin.Context, message string) {
 	if message == "" {
 		message = somethingWentWrongMessage
 	}
-	c.JSON(http.StatusOK, gin.H{
+	c.JSON(http.StatusInternalServerError, gin.H{
 		"message": message,
 	})
 }
