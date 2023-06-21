@@ -43,8 +43,8 @@ func getDbClient() (*Client, error) {
 	}, nil
 }
 
-func (closerDb *Client) Fetch(query string, args ...any) []any {
-	rows, err := closerDb.Query(query, args...)
+func (client *Client) Fetch(query string, args ...any) []any {
+	rows, err := client.Query(query, args...)
 	if err != nil {
 		fmt.Println(err.Error())
 	}
@@ -64,8 +64,8 @@ func (closerDb *Client) Fetch(query string, args ...any) []any {
 	return results
 }
 
-func (closerDb *Client) Insert(query string, args ...any) (int, error) {
-	rows, err := closerDb.Prepare(query)
+func (client *Client) Insert(query string, args ...any) (int, error) {
+	rows, err := client.Prepare(query)
 	if err != nil {
 		fmt.Println(err.Error())
 		return 0, err
@@ -83,8 +83,8 @@ func (closerDb *Client) Insert(query string, args ...any) (int, error) {
 	return int(insertId), nil
 }
 
-func (closerDb *Client) Exec(query string, args ...any) bool {
-	rows, err := closerDb.Prepare(query)
+func (client *Client) Exec(query string, args ...any) bool {
+	rows, err := client.Prepare(query)
 	if err != nil {
 		fmt.Println(err.Error())
 		return false
