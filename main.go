@@ -1,14 +1,20 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/katerji/UserAuthKit/db"
-	"github.com/katerji/UserAuthKit/handler"
-	"github.com/katerji/UserAuthKit/middleware"
+	"github.com/katerji/gopush/db"
+	"github.com/katerji/gopush/gapi"
+	"github.com/katerji/gopush/handler"
+	"github.com/katerji/gopush/middleware"
+	gopush "github.com/katerji/gopush/proto"
+	"google.golang.org/grpc"
+	"net"
 )
 
 func main() {
 	initDB()
+	go initGRPCServer()
 	initWebServer()
 }
 
@@ -39,4 +45,22 @@ func initWebServer() {
 	if err != nil {
 		panic(err)
 	}
+}
+
+func initGRPCServer() {
+	grpcServer := grpc.NewServer()
+	s := gapi.NewServer()
+	gopush.RegisterPusherServer(grpcServer, s)
+
+	lis, err := net.Listen("tcp", ":8080")
+	if err != nil {
+		fmt.Println(err)
+		panic(err)
+	}
+
+	err = grpcServer.Serve(lis)
+	if err != nil {
+		fmt.Println(err)
+	}
+
 }

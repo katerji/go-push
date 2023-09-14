@@ -2,26 +2,15 @@ package handler
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/katerji/UserAuthKit/input"
-	"github.com/katerji/UserAuthKit/model"
-	"github.com/katerji/UserAuthKit/service"
+	"github.com/katerji/gopush/input"
+	gopush "github.com/katerji/gopush/proto"
+	"github.com/katerji/gopush/service"
 )
 
 const LoginPath = "/login"
 
-type LoginRequest struct {
-	Email    string `json:"email"`
-	Password string `json:"password"`
-}
-
-type LoginResponse struct {
-	User         model.UserOutput `json:"user"`
-	Token        string           `json:"access_token"`
-	RefreshToken string           `json:"refresh_token"`
-}
-
 func LoginHandler(c *gin.Context) {
-	request := &LoginRequest{}
+	request := &gopush.LoginRequest{}
 	err := c.BindJSON(request)
 	if err != nil {
 		sendBadRequest(c)
@@ -48,8 +37,8 @@ func LoginHandler(c *gin.Context) {
 		sendErrorMessage(c, "")
 		return
 	}
-	response := LoginResponse{
-		User:         user.ToOutput(),
+	response := &gopush.LoginResponse{
+		User:         user,
 		Token:        token,
 		RefreshToken: refreshToken,
 	}

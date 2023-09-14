@@ -1,6 +1,14 @@
-# UserAuthKit
+# gopush
 
 This repository contains a simple Go API with four endpoints for user authentication and user information retrieval.
+
+## Setup
+``` 
+protoc --go_out=. --go_opt=paths=source_relative  --go-grpc_out=. --go-grpc_opt=paths=source_relative  proto/pusher.proto
+```
+```
+local-env/docker-compose up -d
+```
 
 ## Endpoints
 

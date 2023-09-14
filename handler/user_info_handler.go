@@ -2,19 +2,19 @@ package handler
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/katerji/UserAuthKit/model"
+	gopush "github.com/katerji/gopush/proto"
 )
 
 const UserInfoPath = "/user"
 
 type UserInfoResponse struct {
-	User model.UserOutput `json:"user"`
+	User *gopush.User `json:"user"`
 }
 
 func UserInfoHandler(c *gin.Context) {
-	user := c.MustGet("user").(model.User)
-	response := UserInfoResponse{
-		User: user.ToOutput(),
+	user := c.MustGet("user").(*gopush.User)
+	response := &UserInfoResponse{
+		User: user,
 	}
 	sendJSONResponse(c, response)
 	return

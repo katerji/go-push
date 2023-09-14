@@ -1,0 +1,33 @@
+syntax = "proto3";
+option go_package = "./gopush";
+
+message LoginRequest {
+  string email = 1 [json_name = "email"];
+  string password = 2 [json_name = "password"];
+}
+
+message LoginResponse {
+  User user = 1 [json_name = "user"];
+  string token = 2 [json_name = "access_token"];
+  string refreshToken = 3 [json_name = "refresh_token"];
+}
+
+message User {
+  int64 id = 1 [json_name = "id"];
+  string email = 2 [json_name = "email"];
+}
+
+message RegisterRequest {
+  string email = 1 [json_name = "email"];
+  string password = 2 [json_name = "password"];
+}
+
+message GenericResponse {
+  bool success = 1 [json_name = "success"];
+  string message = 2 [json_name = "message"];
+}
+
+service Pusher {
+  rpc Login (LoginRequest) returns (LoginResponse) {}
+  rpc Register (RegisterRequest) returns (GenericResponse) {}
+}

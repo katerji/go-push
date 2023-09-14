@@ -2,8 +2,8 @@ package handler
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/katerji/UserAuthKit/input"
-	"github.com/katerji/UserAuthKit/service"
+	"github.com/katerji/gopush/input"
+	"github.com/katerji/gopush/service"
 )
 
 const RegisterPath = "/register"
