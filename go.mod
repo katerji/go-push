@@ -1,4 +1,4 @@
-module github.com/katerji/UserAuthKit
+module github.com/katerji/go-push
 
 go 1.20
 
@@ -7,6 +7,7 @@ require (
 	github.com/go-sql-driver/mysql v1.7.1
 	github.com/golang-jwt/jwt/v4 v4.5.0
 	github.com/joho/godotenv v1.5.1
+	github.com/katerji/UserAuthKit v0.0.0-20230621134743-61b07cb59e70
 	golang.org/x/crypto v0.9.0
 )
 
